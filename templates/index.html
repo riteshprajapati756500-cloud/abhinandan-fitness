@@ -1,1 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Abhinandan Fitness</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            color: white;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10,10,10,0.96);
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #292929;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ff1b1b;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff1b1b;
+        }
+
+        .hero {
+            min-height: 90vh;
+            padding: 70px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background:
+                radial-gradient(circle at right, #351010, #0b0b0b 50%);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .tag {
+            color: #ff3030;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #ff1b1b;
+        }
+
+        .hero p {
+            color: #cfcfcf;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #e50914;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn.dark {
+            background: #242424;
+        }
+
+        .hero-image {
+            width: min(440px, 90vw);
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 25px;
+            display: block;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+        }
+
+        .red {
+            color: #ff1b1b;
+        }
+
+        .section-title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #cfcfcf;
+            font-size: 18px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: #161616;
+            border: 1px solid #292929;
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .card p {
+            color: #aaa;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .blog {
+            background: #161616;
+            border: 1px solid #292929;
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .blog h3 {
+            color: #ff3030;
+            margin-bottom: 10px;
+        }
+
+        .blog p {
+            color: #bbb;
+        }
+
+        .empty {
+            text-align: center;
+            color: #888;
+        }
+
+        .social {
+            text-align: center;
+            background: #111;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050505;
+            color: #888;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 800px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cards,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        ABHINANDAN <span>FITNESS</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#knowledge">Knowledge</a></li>
+        <li><a href="#workout">Workout</a></li>
+        <li><a href="#blog">Blog</a></li>
+    </ul>
+</nav>
+
+
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <div class="tag">
+            FITNESS • DISCIPLINE • CONSISTENCY
+        </div>
+
+        <h1>
+            BUILD YOUR<br>
+            <span>STRONGER</span> SELF
+        </h1>
+
+        <p>
+            Welcome to Abhinandan Fitness — a place for
+            fitness knowledge, motivation and a consistent
+            approach to a healthier lifestyle.
+        </p>
+
+        <a class="btn" href="#knowledge">
+            Explore Fitness
+        </a>
+
+        <a class="btn dark" href="#blog">
+            Read Articles
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="{{ url_for('static', filename='abhinandan.jpg') }}"
+            alt="Abhinandan Fitness"
+        >
+
+    </div>
+
+</section>
+
+
+<section id="about">
+
+    <div class="section-title">
+        <h2>About <span class="red">Abhinandan</span></h2>
+    </div>
+
+    <div class="about">
+
+        <p>
+            Abhinandan Kumar is a fitness content creator who
+            shares gym motivation, fitness knowledge and his
+            personal journey through social media and this website.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section id="knowledge">
+
+    <div class="section-title">
+
+        <h2>Fitness <span class="red">Knowledge</span></h2>
+
+        <p>
+            Learn the basics and build a sustainable fitness routine.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Consistency</h3>
+            <p>
+                Progress comes from regular effort and realistic
+                habits rather than trying to change everything at once.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Recovery</h3>
+            <p>
+                Rest and recovery are important parts of training.
+                Your routine should allow your body enough time to recover.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Safe Training</h3>
+            <p>
+                Learn proper exercise technique and use sensible
+                training habits instead of chasing extreme results.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="workout">
+
+    <div class="section-title">
+
+        <h2>Workout <span class="red">Basics</span></h2>
+
+        <p>
+            Simple principles for a better training routine.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Warm Up</h3>
+            <p>
+                Prepare your body before training with suitable
+                warm-up movements.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Good Technique</h3>
+            <p>
+                Focus on controlled movement and correct technique
+                rather than simply lifting heavier.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Stay Consistent</h3>
+            <p>
+                Keep your routine realistic so you can maintain
+                it over time.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="blog">
+
+    <div class="section-title">
+
+        <h2>Fitness <span class="red">Blog</span></h2>
+
+        <p>
+            Articles published from the Abhinandan Fitness dashboard.
+        </p>
+
+    </div>
+
+
+    {% if posts %}
+
+    <div class="blog-grid">
+
+        {% for post in posts %}
+
+        <article class="blog">
+
+            <h3>{{ post[1] }}</h3>
+
+            <p>{{ post[2] }}</p>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+        No articles published yet.
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+<section class="social">
+<section class="social" id="contact">
+
+    <div class="section-title">
+
+        <h2>Connect With <span class="red">Abhinandan</span></h2>
+
+        <p>
+            Follow the latest fitness content, motivation and updates.
+        </p>
+
+    </div>
+
+    <a
+        class="btn"
+        href="https://www.instagram.com/abhi.lifts.69/"
+        target="_blank"
+    >
+        Instagram
+    </a>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Abhinandan Fitness. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>
