@@ -4421,25 +4421,70 @@ def logout():
 @app.route("/sitemap.xml")
 def sitemap():
 
-    pages = [
-        "/",
-        "/#about",
-        "/#knowledge",
-        "/#workout",
-        "/#motivation",
-        "/#blog",
-        "/login"
+    base_url = "https://abhinandan-fitness.onrender.com"
+
+    urls = [
+        base_url + "/"
     ]
+
+    # --------------------------------------------------------
+    # PUBLIC EXERCISE PAGES
+    # --------------------------------------------------------
+
+    for exercise in EXERCISE_DATA:
+
+        exercise_url = url_for(
+            "exercise_detail",
+            exercise_name=exercise["name"]
+        )
+
+        urls.append(
+            base_url + exercise_url
+        )
+
+    # --------------------------------------------------------
+    # PUBLIC ARTICLE PAGES
+    # --------------------------------------------------------
+
+    db = get_db()
+
+    posts = db.execute("""
+        SELECT id
+        FROM posts
+        ORDER BY id DESC
+    """).fetchall()
+
+    db.close()
+
+    for post in posts:
+
+        article_url = url_for(
+            "article",
+            post_id=post["id"]
+        )
+
+        urls.append(
+            base_url + article_url
+        )
+
+    # --------------------------------------------------------
+    # XML
+    # --------------------------------------------------------
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 
-    for page in pages:
-        xml += f"<url><loc>https://abhinandan-fitness.onrender.com{page}</loc></url>"
+    for page_url in urls:
+
+        xml += "<url>"
+        xml += f"<loc>{page_url}</loc>"
+        xml += "</url>"
 
     xml += "</urlset>"
 
-    return xml, 200, {"Content-Type": "application/xml"}
+    return xml, 200, {
+        "Content-Type": "application/xml"
+    }
 # ============================================================
 # ROBOTS.TXT
 # ============================================================
