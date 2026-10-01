@@ -1114,6 +1114,13 @@ HOME_HTML = r"""
 <title>
 {{ settings["website_title"] }}
 </title>
+<meta name="google-site-verification" content="7CFx_7zMu-jWZEj4ESqGEBugXHCKxxEtxN3NJAV4itM" />
+
+<meta name="description" content="Abhinandan Fitness — fitness knowledge, workout exercises, motivation and fitness articles by Abhinandan Kumar.">
+
+<meta name="keywords" content="Abhinandan Fitness, fitness, workout, exercises, gym, fitness motivation, fitness articles">
+
+<meta name="theme-color" content="#070707">
 
 {{ style|safe }}
 
