@@ -1121,7 +1121,25 @@ HOME_HTML = r"""
 <meta name="keywords" content="Abhinandan Fitness, fitness, workout, exercises, gym, fitness motivation, fitness articles">
 
 <meta name="theme-color" content="#070707">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Abhinandan Fitness",
+  "url": "https://abhinandan-fitness.onrender.com",
+  "description": "Fitness knowledge, workout exercises, motivation and fitness articles by Abhinandan Kumar."
+}
+</script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Abhinandan Fitness",
+  "alternateName": "Abhinandan Fitness",
+  "url": "https://abhinandan-fitness.onrender.com"
+}
+</script>
 {{ style|safe }}
 
 </head>
