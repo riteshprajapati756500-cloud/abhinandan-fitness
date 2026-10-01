@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+app_before_security.py
+app_backup.py
+app.old*.py
+.env
+fitness.db

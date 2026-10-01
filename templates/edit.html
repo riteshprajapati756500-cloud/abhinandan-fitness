@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Article | Abhinandan Fitness</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #090909;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px 20px;
+        }
+        .box {
+            width: min(750px, 100%);
+            margin: 30px auto;
+            background: #141414;
+            border: 1px solid #292929;
+            border-radius: 18px;
+            padding: 28px;
+        }
+        h1 { margin-top: 0; }
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: 700;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #0b0b0b;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        textarea {
+            min-height: 220px;
+            resize: vertical;
+        }
+        button, a {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 18px;
+            border-radius: 9px;
+            border: 0;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button {
+            background: #ff3030;
+            color: white;
+        }
+        a {
+            background: #222;
+            color: white;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Edit Article</h1>
+
+        <form method="POST">
+            <label for="title">Article Title</label>
+            <input
+                id="title"
+                name="title"
+                value="{{ post['title'] }}"
+                required
+            >
+
+            <label for="content">Article Content</label>
+            <textarea id="content" name="content" required>{{ post['content'] }}</textarea>
+
+            <button type="submit">Save Changes</button>
+            <a href="{{ url_for('admin') }}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

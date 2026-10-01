@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Abhinandan Fitness</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #080808;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: #151515;
+            border: 1px solid #2d2d2d;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.45);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .logo span {
+            color: #ff3030;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 25px 0 8px;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #0e0e0e;
+            color: white;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #ff3030;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 14px;
+            border: 0;
+            border-radius: 10px;
+            background: #ff3030;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e52323;
+        }
+
+        .error {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #351515;
+            color: #ff8b8b;
+            text-align: center;
+        }
+
+        .back {
+            display: block;
+            margin-top: 22px;
+            text-align: center;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        ABHINANDAN <span>FITNESS</span>
+    </div>
+
+    <h1>Admin Login</h1>
+    <p class="subtitle">Manage fitness articles and website content.</p>
+
+    <form method="POST" action="{{ url_for('login') }}">
+
+        <label for="username">Username</label>
+        <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Enter username"
+            required
+            autocomplete="username"
+        >
+
+        <label for="password">Password</label>
+        <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter password"
+            required
+            autocomplete="current-password"
+        >
+
+        <button type="submit">Login to Dashboard</button>
+
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <a class="back" href="{{ url_for('home') }}">← Back to Website</a>
+
+</div>
+
+</body>
+</html>
