@@ -4431,7 +4431,6 @@ def logout():
     return redirect(
         url_for("login")
     )
-
 # ============================================================
 # SITEMAP
 # ============================================================
@@ -4445,6 +4444,28 @@ def sitemap():
         base_url + "/"
     ]
 
+    # Public exercise pages
+    for exercise in EXERCISE_DATA:
+        exercise_url = url_for(
+            "exercise_detail",
+            exercise_name=exercise["name"]
+        )
+        urls.append(base_url + exercise_url)
+
+    # XML
+    xml = '<?xml version="1.0" encoding="UTF-8"?>'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+
+    for page_url in urls:
+        xml += "<url>"
+        xml += f"<loc>{page_url}</loc>"
+        xml += "</url>"
+
+    xml += "</urlset>"
+
+    return xml, 200, {
+        "Content-Type": "application/xml"
+    }
     # --------------------------------------------------------
     # PUBLIC EXERCISE PAGES
     # --------------------------------------------------------
