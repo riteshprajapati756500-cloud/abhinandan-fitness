@@ -4414,7 +4414,32 @@ def logout():
         url_for("login")
     )
 
+# ============================================================
+# SITEMAP
+# ============================================================
 
+@app.route("/sitemap.xml")
+def sitemap():
+
+    pages = [
+        "/",
+        "/#about",
+        "/#knowledge",
+        "/#workout",
+        "/#motivation",
+        "/#blog",
+        "/login"
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+
+    for page in pages:
+        xml += f"<url><loc>https://abhinandan-fitness.onrender.com{page}</loc></url>"
+
+    xml += "</urlset>"
+
+    return xml, 200, {"Content-Type": "application/xml"}
 # ============================================================
 # START
 # ============================================================
