@@ -4441,6 +4441,17 @@ def sitemap():
 
     return xml, 200, {"Content-Type": "application/xml"}
 # ============================================================
+# ROBOTS.TXT
+# ============================================================
+
+@app.route("/robots.txt")
+def robots():
+    return """User-agent: *
+Allow: /
+
+Sitemap: https://abhinandan-fitness.onrender.com/sitemap.xml
+""", 200, {"Content-Type": "text/plain"}
+# ============================================================
 # START
 # ============================================================
 init_database()
