@@ -2452,12 +2452,21 @@ ARTICLE_HTML = r"""
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-{{ post["title"] }} • Abhinandan Fitness
-</title>
+<title>{{ post["title"] }} • Abhinandan Fitness</title>
+
+<meta
+    name="description"
+    content="{{ post['title'] }} — fitness knowledge, motivation and useful fitness information from Abhinandan Fitness."
+>
+
+<link
+    rel="canonical"
+    href="https://abhinandan-fitness.onrender.com/article/{{ post['id'] }}"
+>
+
+<meta name="robots" content="index, follow">
 
 {{ style|safe }}
-
 </head>
 
 
