@@ -3417,6 +3417,15 @@ EXERCISE_DETAIL_HTML = r"""
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ exercise["name"] }} • Abhinandan Fitness</title>
+
+<meta name="description"
+content="{{ exercise['description'] }} Learn about {{ exercise['name'] }} on Abhinandan Fitness.">
+
+<link rel="canonical"
+href="https://abhinandan-fitness.onrender.com/exercise/{{ exercise['name']|urlencode }}">
+
+<meta name="robots" content="index, follow">
+
 {{ style|safe }}
 </head>
 <body>
@@ -4440,25 +4449,77 @@ def sitemap():
 
     base_url = "https://abhinandan-fitness.onrender.com"
 
-    urls = [
-        base_url + "/"
-    ]
+    urls = []
 
-    # Public exercise pages
+    # --------------------------------------------------------
+    # HOMEPAGE
+    # --------------------------------------------------------
+
+    urls.append({
+        "loc": base_url + "/"
+    })
+
+    # --------------------------------------------------------
+    # EXERCISE PAGES
+    # --------------------------------------------------------
+
     for exercise in EXERCISE_DATA:
+
         exercise_url = url_for(
             "exercise_detail",
             exercise_name=exercise["name"]
         )
-        urls.append(base_url + exercise_url)
 
-    # XML
+        urls.append({
+            "loc": base_url + exercise_url
+        })
+
+    # --------------------------------------------------------
+    # PUBLISHED ARTICLES
+    # --------------------------------------------------------
+
+    db = get_db()
+
+    posts = db.execute("""
+        SELECT id, created_at
+        FROM posts
+        ORDER BY id DESC
+    """).fetchall()
+
+    db.close()
+
+    for post in posts:
+
+        article_url = url_for(
+            "article",
+            post_id=post["id"]
+        )
+
+        item = {
+            "loc": base_url + article_url
+        }
+
+        # Add last modification date when available
+        if post["created_at"]:
+            item["lastmod"] = str(post["created_at"])[:10]
+
+        urls.append(item)
+
+    # --------------------------------------------------------
+    # BUILD XML
+    # --------------------------------------------------------
+
     xml = '<?xml version="1.0" encoding="UTF-8"?>'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 
-    for page_url in urls:
+    for item in urls:
+
         xml += "<url>"
-        xml += f"<loc>{page_url}</loc>"
+        xml += f"<loc>{item['loc']}</loc>"
+
+        if item.get("lastmod"):
+            xml += f"<lastmod>{item['lastmod']}</lastmod>"
+
         xml += "</url>"
 
     xml += "</urlset>"
